@@ -1,0 +1,19 @@
+node_modules/
+build/
+*.log
+
+# Tree-sitter test output
+tree-sitter-mshell.wasm
+
+# Native bindings build artifacts
+*.o
+*.so
+*.dylib
+*.dll
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo

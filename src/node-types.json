@@ -1,0 +1,1906 @@
+[
+  {
+    "type": "boolean",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "builtin",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "comparison_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "dict",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "builtin",
+          "named": true
+        },
+        {
+          "type": "comparison_operator",
+          "named": true
+        },
+        {
+          "type": "datetime",
+          "named": true
+        },
+        {
+          "type": "dict",
+          "named": true
+        },
+        {
+          "type": "end_indexer",
+          "named": true
+        },
+        {
+          "type": "env_check",
+          "named": true
+        },
+        {
+          "type": "env_retrieve",
+          "named": true
+        },
+        {
+          "type": "env_store",
+          "named": true
+        },
+        {
+          "type": "execute_operator",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "format_string",
+          "named": true
+        },
+        {
+          "type": "grid",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indexer",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "match_arm_dup",
+          "named": true
+        },
+        {
+          "type": "path",
+          "named": true
+        },
+        {
+          "type": "positional",
+          "named": true
+        },
+        {
+          "type": "prefix_quote",
+          "named": true
+        },
+        {
+          "type": "punctuation",
+          "named": true
+        },
+        {
+          "type": "quotation",
+          "named": true
+        },
+        {
+          "type": "redirect_operator",
+          "named": true
+        },
+        {
+          "type": "single_quoted_string",
+          "named": true
+        },
+        {
+          "type": "slice_indexer",
+          "named": true
+        },
+        {
+          "type": "start_indexer",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "type_keyword",
+          "named": true
+        },
+        {
+          "type": "var_retrieve",
+          "named": true
+        },
+        {
+          "type": "var_store",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "execute_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "grid",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "builtin",
+          "named": true
+        },
+        {
+          "type": "comparison_operator",
+          "named": true
+        },
+        {
+          "type": "datetime",
+          "named": true
+        },
+        {
+          "type": "dict",
+          "named": true
+        },
+        {
+          "type": "end_indexer",
+          "named": true
+        },
+        {
+          "type": "env_check",
+          "named": true
+        },
+        {
+          "type": "env_retrieve",
+          "named": true
+        },
+        {
+          "type": "env_store",
+          "named": true
+        },
+        {
+          "type": "execute_operator",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "format_string",
+          "named": true
+        },
+        {
+          "type": "grid",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indexer",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "match_arm_dup",
+          "named": true
+        },
+        {
+          "type": "path",
+          "named": true
+        },
+        {
+          "type": "positional",
+          "named": true
+        },
+        {
+          "type": "prefix_quote",
+          "named": true
+        },
+        {
+          "type": "punctuation",
+          "named": true
+        },
+        {
+          "type": "quotation",
+          "named": true
+        },
+        {
+          "type": "redirect_operator",
+          "named": true
+        },
+        {
+          "type": "single_quoted_string",
+          "named": true
+        },
+        {
+          "type": "slice_indexer",
+          "named": true
+        },
+        {
+          "type": "start_indexer",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "type_keyword",
+          "named": true
+        },
+        {
+          "type": "var_retrieve",
+          "named": true
+        },
+        {
+          "type": "var_store",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "builtin",
+          "named": true
+        },
+        {
+          "type": "comparison_operator",
+          "named": true
+        },
+        {
+          "type": "datetime",
+          "named": true
+        },
+        {
+          "type": "dict",
+          "named": true
+        },
+        {
+          "type": "end_indexer",
+          "named": true
+        },
+        {
+          "type": "env_check",
+          "named": true
+        },
+        {
+          "type": "env_retrieve",
+          "named": true
+        },
+        {
+          "type": "env_store",
+          "named": true
+        },
+        {
+          "type": "execute_operator",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "format_string",
+          "named": true
+        },
+        {
+          "type": "grid",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indexer",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "match_arm_dup",
+          "named": true
+        },
+        {
+          "type": "path",
+          "named": true
+        },
+        {
+          "type": "positional",
+          "named": true
+        },
+        {
+          "type": "prefix_quote",
+          "named": true
+        },
+        {
+          "type": "punctuation",
+          "named": true
+        },
+        {
+          "type": "quotation",
+          "named": true
+        },
+        {
+          "type": "redirect_operator",
+          "named": true
+        },
+        {
+          "type": "single_quoted_string",
+          "named": true
+        },
+        {
+          "type": "slice_indexer",
+          "named": true
+        },
+        {
+          "type": "start_indexer",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "type_keyword",
+          "named": true
+        },
+        {
+          "type": "var_retrieve",
+          "named": true
+        },
+        {
+          "type": "var_store",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "punctuation",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "quotation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "builtin",
+          "named": true
+        },
+        {
+          "type": "comparison_operator",
+          "named": true
+        },
+        {
+          "type": "datetime",
+          "named": true
+        },
+        {
+          "type": "dict",
+          "named": true
+        },
+        {
+          "type": "end_indexer",
+          "named": true
+        },
+        {
+          "type": "env_check",
+          "named": true
+        },
+        {
+          "type": "env_retrieve",
+          "named": true
+        },
+        {
+          "type": "env_store",
+          "named": true
+        },
+        {
+          "type": "execute_operator",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "format_string",
+          "named": true
+        },
+        {
+          "type": "grid",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indexer",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "match_arm_dup",
+          "named": true
+        },
+        {
+          "type": "path",
+          "named": true
+        },
+        {
+          "type": "positional",
+          "named": true
+        },
+        {
+          "type": "prefix_quote",
+          "named": true
+        },
+        {
+          "type": "punctuation",
+          "named": true
+        },
+        {
+          "type": "quotation",
+          "named": true
+        },
+        {
+          "type": "redirect_operator",
+          "named": true
+        },
+        {
+          "type": "single_quoted_string",
+          "named": true
+        },
+        {
+          "type": "slice_indexer",
+          "named": true
+        },
+        {
+          "type": "start_indexer",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "type_keyword",
+          "named": true
+        },
+        {
+          "type": "var_retrieve",
+          "named": true
+        },
+        {
+          "type": "var_store",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "redirect_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "builtin",
+          "named": true
+        },
+        {
+          "type": "comparison_operator",
+          "named": true
+        },
+        {
+          "type": "datetime",
+          "named": true
+        },
+        {
+          "type": "dict",
+          "named": true
+        },
+        {
+          "type": "end_indexer",
+          "named": true
+        },
+        {
+          "type": "env_check",
+          "named": true
+        },
+        {
+          "type": "env_retrieve",
+          "named": true
+        },
+        {
+          "type": "env_store",
+          "named": true
+        },
+        {
+          "type": "execute_operator",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "format_string",
+          "named": true
+        },
+        {
+          "type": "grid",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indexer",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "match_arm_dup",
+          "named": true
+        },
+        {
+          "type": "path",
+          "named": true
+        },
+        {
+          "type": "positional",
+          "named": true
+        },
+        {
+          "type": "prefix_quote",
+          "named": true
+        },
+        {
+          "type": "punctuation",
+          "named": true
+        },
+        {
+          "type": "quotation",
+          "named": true
+        },
+        {
+          "type": "redirect_operator",
+          "named": true
+        },
+        {
+          "type": "single_quoted_string",
+          "named": true
+        },
+        {
+          "type": "slice_indexer",
+          "named": true
+        },
+        {
+          "type": "start_indexer",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "type_keyword",
+          "named": true
+        },
+        {
+          "type": "var_retrieve",
+          "named": true
+        },
+        {
+          "type": "var_store",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "!",
+    "named": false
+  },
+  {
+    "type": "!=",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
+    "type": "&>",
+    "named": false
+  },
+  {
+    "type": "&>>",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "*b",
+    "named": false
+  },
+  {
+    "type": "*if",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "-rot",
+    "named": false
+  },
+  {
+    "type": ".b",
+    "named": false
+  },
+  {
+    "type": ".def",
+    "named": false
+  },
+  {
+    "type": ".env",
+    "named": false
+  },
+  {
+    "type": ".s",
+    "named": false
+  },
+  {
+    "type": "2>",
+    "named": false
+  },
+  {
+    "type": "2>>",
+    "named": false
+  },
+  {
+    "type": "2apply",
+    "named": false
+  },
+  {
+    "type": "2each",
+    "named": false
+  },
+  {
+    "type": "2id",
+    "named": false
+  },
+  {
+    "type": "2tuple",
+    "named": false
+  },
+  {
+    "type": "2unpack",
+    "named": false
+  },
+  {
+    "type": "3id",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "::",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "<>",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": ">>",
+    "named": false
+  },
+  {
+    "type": "?",
+    "named": false
+  },
+  {
+    "type": "VER",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "[|",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "^b",
+    "named": false
+  },
+  {
+    "type": "abs",
+    "named": false
+  },
+  {
+    "type": "absPath",
+    "named": false
+  },
+  {
+    "type": "addDays",
+    "named": false
+  },
+  {
+    "type": "all",
+    "named": false
+  },
+  {
+    "type": "and",
+    "named": false
+  },
+  {
+    "type": "any",
+    "named": false
+  },
+  {
+    "type": "append",
+    "named": false
+  },
+  {
+    "type": "appendFile",
+    "named": false
+  },
+  {
+    "type": "args",
+    "named": false
+  },
+  {
+    "type": "as",
+    "named": false
+  },
+  {
+    "type": "base64decode",
+    "named": false
+  },
+  {
+    "type": "base64encode",
+    "named": false
+  },
+  {
+    "type": "basename",
+    "named": false
+  },
+  {
+    "type": "binPaths",
+    "named": false
+  },
+  {
+    "type": "bind",
+    "named": false
+  },
+  {
+    "type": "bool",
+    "named": false
+  },
+  {
+    "type": "break",
+    "named": false
+  },
+  {
+    "type": "cartesian",
+    "named": false
+  },
+  {
+    "type": "cd",
+    "named": false
+  },
+  {
+    "type": "ceil",
+    "named": false
+  },
+  {
+    "type": "chunk",
+    "named": false
+  },
+  {
+    "type": "concat",
+    "named": false
+  },
+  {
+    "type": "continue",
+    "named": false
+  },
+  {
+    "type": "countSubStr",
+    "named": false
+  },
+  {
+    "type": "cp",
+    "named": false
+  },
+  {
+    "type": "cstToUtc",
+    "named": false
+  },
+  {
+    "type": "date",
+    "named": false
+  },
+  {
+    "type": "dateFmt",
+    "named": false
+  },
+  {
+    "type": "datetime",
+    "named": true
+  },
+  {
+    "type": "day",
+    "named": false
+  },
+  {
+    "type": "def",
+    "named": false
+  },
+  {
+    "type": "del",
+    "named": false
+  },
+  {
+    "type": "derive",
+    "named": false
+  },
+  {
+    "type": "dirname",
+    "named": false
+  },
+  {
+    "type": "dirs",
+    "named": false
+  },
+  {
+    "type": "dow",
+    "named": false
+  },
+  {
+    "type": "drop",
+    "named": false
+  },
+  {
+    "type": "dropWhile",
+    "named": false
+  },
+  {
+    "type": "dup",
+    "named": false
+  },
+  {
+    "type": "each",
+    "named": false
+  },
+  {
+    "type": "eachWhile",
+    "named": false
+  },
+  {
+    "type": "else",
+    "named": false
+  },
+  {
+    "type": "else*",
+    "named": false
+  },
+  {
+    "type": "end",
+    "named": false
+  },
+  {
+    "type": "end_indexer",
+    "named": true
+  },
+  {
+    "type": "endsWith",
+    "named": false
+  },
+  {
+    "type": "enumerate",
+    "named": false
+  },
+  {
+    "type": "enumerateN",
+    "named": false
+  },
+  {
+    "type": "env_check",
+    "named": true
+  },
+  {
+    "type": "env_retrieve",
+    "named": true
+  },
+  {
+    "type": "env_store",
+    "named": true
+  },
+  {
+    "type": "exclude",
+    "named": false
+  },
+  {
+    "type": "exit",
+    "named": false
+  },
+  {
+    "type": "ext",
+    "named": false
+  },
+  {
+    "type": "extend",
+    "named": false
+  },
+  {
+    "type": "fail",
+    "named": false
+  },
+  {
+    "type": "false",
+    "named": false
+  },
+  {
+    "type": "fileExists",
+    "named": false
+  },
+  {
+    "type": "fileSize",
+    "named": false
+  },
+  {
+    "type": "files",
+    "named": false
+  },
+  {
+    "type": "filter",
+    "named": false
+  },
+  {
+    "type": "findReplace",
+    "named": false
+  },
+  {
+    "type": "float",
+    "named": false
+  },
+  {
+    "type": "float",
+    "named": true
+  },
+  {
+    "type": "floatCmp",
+    "named": false
+  },
+  {
+    "type": "floor",
+    "named": false
+  },
+  {
+    "type": "foldl",
+    "named": false
+  },
+  {
+    "type": "format_string",
+    "named": true
+  },
+  {
+    "type": "fromOleDate",
+    "named": false
+  },
+  {
+    "type": "fromUnixTime",
+    "named": false
+  },
+  {
+    "type": "fromUnixTimeMicro",
+    "named": false
+  },
+  {
+    "type": "fromUnixTimeMilli",
+    "named": false
+  },
+  {
+    "type": "fromUnixTimeNano",
+    "named": false
+  },
+  {
+    "type": "get",
+    "named": false
+  },
+  {
+    "type": "getDef",
+    "named": false
+  },
+  {
+    "type": "glob",
+    "named": false
+  },
+  {
+    "type": "gridValues",
+    "named": false
+  },
+  {
+    "type": "groupBy",
+    "named": false
+  },
+  {
+    "type": "hardLink",
+    "named": false
+  },
+  {
+    "type": "hostname",
+    "named": false
+  },
+  {
+    "type": "hour",
+    "named": false
+  },
+  {
+    "type": "httpGet",
+    "named": false
+  },
+  {
+    "type": "httpPost",
+    "named": false
+  },
+  {
+    "type": "id",
+    "named": false
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "if",
+    "named": false
+  },
+  {
+    "type": "iff",
+    "named": false
+  },
+  {
+    "type": "in",
+    "named": false
+  },
+  {
+    "type": "inc",
+    "named": false
+  },
+  {
+    "type": "index",
+    "named": false
+  },
+  {
+    "type": "indexer",
+    "named": true
+  },
+  {
+    "type": "insert",
+    "named": false
+  },
+  {
+    "type": "int",
+    "named": false
+  },
+  {
+    "type": "integer",
+    "named": true
+  },
+  {
+    "type": "isCmd",
+    "named": false
+  },
+  {
+    "type": "isDir",
+    "named": false
+  },
+  {
+    "type": "isFile",
+    "named": false
+  },
+  {
+    "type": "isNone",
+    "named": false
+  },
+  {
+    "type": "isWeekday",
+    "named": false
+  },
+  {
+    "type": "isWeekend",
+    "named": false
+  },
+  {
+    "type": "isoDateFmt",
+    "named": false
+  },
+  {
+    "type": "isoDateTimeFmt",
+    "named": false
+  },
+  {
+    "type": "join",
+    "named": false
+  },
+  {
+    "type": "just",
+    "named": false
+  },
+  {
+    "type": "keyValues",
+    "named": false
+  },
+  {
+    "type": "keys",
+    "named": false
+  },
+  {
+    "type": "lastIndexOf",
+    "named": false
+  },
+  {
+    "type": "leftJoin",
+    "named": false
+  },
+  {
+    "type": "leftPad",
+    "named": false
+  },
+  {
+    "type": "len",
+    "named": false
+  },
+  {
+    "type": "line_comment",
+    "named": true
+  },
+  {
+    "type": "linearSearch",
+    "named": false
+  },
+  {
+    "type": "linearSearchIndex",
+    "named": false
+  },
+  {
+    "type": "lines",
+    "named": false
+  },
+  {
+    "type": "listToDict",
+    "named": false
+  },
+  {
+    "type": "loop",
+    "named": false
+  },
+  {
+    "type": "lower",
+    "named": false
+  },
+  {
+    "type": "lsDir",
+    "named": false
+  },
+  {
+    "type": "map",
+    "named": false
+  },
+  {
+    "type": "match",
+    "named": false
+  },
+  {
+    "type": "match_arm_dup",
+    "named": true
+  },
+  {
+    "type": "max",
+    "named": false
+  },
+  {
+    "type": "max2",
+    "named": false
+  },
+  {
+    "type": "maybe",
+    "named": false
+  },
+  {
+    "type": "md5",
+    "named": false
+  },
+  {
+    "type": "min",
+    "named": false
+  },
+  {
+    "type": "min2",
+    "named": false
+  },
+  {
+    "type": "minute",
+    "named": false
+  },
+  {
+    "type": "mkdir",
+    "named": false
+  },
+  {
+    "type": "mkdirp",
+    "named": false
+  },
+  {
+    "type": "mod",
+    "named": false
+  },
+  {
+    "type": "month",
+    "named": false
+  },
+  {
+    "type": "mv",
+    "named": false
+  },
+  {
+    "type": "nip",
+    "named": false
+  },
+  {
+    "type": "none",
+    "named": false
+  },
+  {
+    "type": "not",
+    "named": false
+  },
+  {
+    "type": "now",
+    "named": false
+  },
+  {
+    "type": "nth",
+    "named": false
+  },
+  {
+    "type": "or",
+    "named": false
+  },
+  {
+    "type": "outerJoin",
+    "named": false
+  },
+  {
+    "type": "over",
+    "named": false
+  },
+  {
+    "type": "parseCsv",
+    "named": false
+  },
+  {
+    "type": "parseExcel",
+    "named": false
+  },
+  {
+    "type": "parseHtml",
+    "named": false
+  },
+  {
+    "type": "parseJson",
+    "named": false
+  },
+  {
+    "type": "path",
+    "named": true
+  },
+  {
+    "type": "pick",
+    "named": false
+  },
+  {
+    "type": "pop",
+    "named": false
+  },
+  {
+    "type": "positional",
+    "named": true
+  },
+  {
+    "type": "prefix_quote",
+    "named": true
+  },
+  {
+    "type": "prompt",
+    "named": false
+  },
+  {
+    "type": "psub",
+    "named": false
+  },
+  {
+    "type": "pure",
+    "named": false
+  },
+  {
+    "type": "pwd",
+    "named": false
+  },
+  {
+    "type": "reFindAll",
+    "named": false
+  },
+  {
+    "type": "reFindAllIndex",
+    "named": false
+  },
+  {
+    "type": "reMatch",
+    "named": false
+  },
+  {
+    "type": "reReplace",
+    "named": false
+  },
+  {
+    "type": "reSplit",
+    "named": false
+  },
+  {
+    "type": "read",
+    "named": false
+  },
+  {
+    "type": "readFile",
+    "named": false
+  },
+  {
+    "type": "readFileBytes",
+    "named": false
+  },
+  {
+    "type": "readTsvFile",
+    "named": false
+  },
+  {
+    "type": "repeat",
+    "named": false
+  },
+  {
+    "type": "reverse",
+    "named": false
+  },
+  {
+    "type": "rm",
+    "named": false
+  },
+  {
+    "type": "rmf",
+    "named": false
+  },
+  {
+    "type": "rot",
+    "named": false
+  },
+  {
+    "type": "round",
+    "named": false
+  },
+  {
+    "type": "runtime",
+    "named": false
+  },
+  {
+    "type": "select",
+    "named": false
+  },
+  {
+    "type": "seq",
+    "named": false
+  },
+  {
+    "type": "set",
+    "named": false
+  },
+  {
+    "type": "setAt",
+    "named": false
+  },
+  {
+    "type": "setd",
+    "named": false
+  },
+  {
+    "type": "sha256sum",
+    "named": false
+  },
+  {
+    "type": "single_quoted_string",
+    "named": true
+  },
+  {
+    "type": "skip",
+    "named": false
+  },
+  {
+    "type": "slice_indexer",
+    "named": true
+  },
+  {
+    "type": "soe",
+    "named": false
+  },
+  {
+    "type": "sort",
+    "named": false
+  },
+  {
+    "type": "sortBy",
+    "named": false
+  },
+  {
+    "type": "sortByCmp",
+    "named": false
+  },
+  {
+    "type": "sortV",
+    "named": false
+  },
+  {
+    "type": "split",
+    "named": false
+  },
+  {
+    "type": "start_indexer",
+    "named": true
+  },
+  {
+    "type": "startsWith",
+    "named": false
+  },
+  {
+    "type": "stdin",
+    "named": false
+  },
+  {
+    "type": "stem",
+    "named": false
+  },
+  {
+    "type": "str",
+    "named": false
+  },
+  {
+    "type": "strCmp",
+    "named": false
+  },
+  {
+    "type": "string",
+    "named": true
+  },
+  {
+    "type": "sum",
+    "named": false
+  },
+  {
+    "type": "swap",
+    "named": false
+  },
+  {
+    "type": "tab",
+    "named": false
+  },
+  {
+    "type": "take",
+    "named": false
+  },
+  {
+    "type": "takeWhile",
+    "named": false
+  },
+  {
+    "type": "tempDir",
+    "named": false
+  },
+  {
+    "type": "tempFile",
+    "named": false
+  },
+  {
+    "type": "tempFileExt",
+    "named": false
+  },
+  {
+    "type": "title",
+    "named": false
+  },
+  {
+    "type": "toCsv",
+    "named": false
+  },
+  {
+    "type": "toCsvCell",
+    "named": false
+  },
+  {
+    "type": "toDt",
+    "named": false
+  },
+  {
+    "type": "toFloat",
+    "named": false
+  },
+  {
+    "type": "toGrid",
+    "named": false
+  },
+  {
+    "type": "toInt",
+    "named": false
+  },
+  {
+    "type": "toOleDate",
+    "named": false
+  },
+  {
+    "type": "toPath",
+    "named": false
+  },
+  {
+    "type": "toUnixTime",
+    "named": false
+  },
+  {
+    "type": "toUnixTimeMicro",
+    "named": false
+  },
+  {
+    "type": "toUnixTimeMilli",
+    "named": false
+  },
+  {
+    "type": "toUnixTimeNano",
+    "named": false
+  },
+  {
+    "type": "trim",
+    "named": false
+  },
+  {
+    "type": "trimEnd",
+    "named": false
+  },
+  {
+    "type": "trimStart",
+    "named": false
+  },
+  {
+    "type": "true",
+    "named": false
+  },
+  {
+    "type": "try",
+    "named": false
+  },
+  {
+    "type": "tsplit",
+    "named": false
+  },
+  {
+    "type": "tt",
+    "named": false
+  },
+  {
+    "type": "ttFile",
+    "named": false
+  },
+  {
+    "type": "tuw",
+    "named": false
+  },
+  {
+    "type": "type",
+    "named": false
+  },
+  {
+    "type": "typeof",
+    "named": false
+  },
+  {
+    "type": "uniq",
+    "named": false
+  },
+  {
+    "type": "unlines",
+    "named": false
+  },
+  {
+    "type": "unlinesCrLf",
+    "named": false
+  },
+  {
+    "type": "updateCol",
+    "named": false
+  },
+  {
+    "type": "upper",
+    "named": false
+  },
+  {
+    "type": "urlEncode",
+    "named": false
+  },
+  {
+    "type": "utcToCst",
+    "named": false
+  },
+  {
+    "type": "utf8Bytes",
+    "named": false
+  },
+  {
+    "type": "utf8Str",
+    "named": false
+  },
+  {
+    "type": "uw",
+    "named": false
+  },
+  {
+    "type": "values",
+    "named": false
+  },
+  {
+    "type": "var_retrieve",
+    "named": true
+  },
+  {
+    "type": "var_store",
+    "named": true
+  },
+  {
+    "type": "versionSortCmp",
+    "named": false
+  },
+  {
+    "type": "w",
+    "named": false
+  },
+  {
+    "type": "we",
+    "named": false
+  },
+  {
+    "type": "wl",
+    "named": false
+  },
+  {
+    "type": "wle",
+    "named": false
+  },
+  {
+    "type": "writeFile",
+    "named": false
+  },
+  {
+    "type": "wsplit",
+    "named": false
+  },
+  {
+    "type": "wt",
+    "named": false
+  },
+  {
+    "type": "x",
+    "named": false
+  },
+  {
+    "type": "year",
+    "named": false
+  },
+  {
+    "type": "zip",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "|]",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  }
+]
