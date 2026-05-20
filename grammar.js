@@ -32,6 +32,11 @@ module.exports = grammar({
       $.dict,
       $.grid,
 
+      $.definition,
+      $.match_block,
+      $.if_block,
+      $.prefix_quote_block,
+
       $.string,
       $.format_string,
       $.single_quoted_string,
@@ -57,7 +62,6 @@ module.exports = grammar({
       $.start_indexer,
 
       $.match_arm_dup,
-      $.prefix_quote,
 
       $.keyword,
       $.type_keyword,
@@ -76,14 +80,63 @@ module.exports = grammar({
     dict:      $ => seq('{',  repeat($._word), '}'),
     grid:      $ => seq('[|', repeat($._word), '|]'),
 
+    // `def name [metadata-dict] [signature-quotation] body... end`.
+    // Header parts are optional in the grammar so partial code still
+    // parses cleanly; the dict/quotation just fall under `_word` if
+    // present.
+    definition: $ => seq(
+      'def',
+      repeat($._word),
+      'end',
+    ),
+
+    // `subject match arm,... end`. Arms aren't separately modeled — the
+    // body is just a stream of words.
+    match_block: $ => seq(
+      'match',
+      repeat($._word),
+      'end',
+    ),
+
+    // `condition if body [else* cond *if body]... [else body] end`.
+    if_block: $ => seq(
+      'if',
+      repeat($._word),
+      repeat($.elseif_branch),
+      optional($.else_branch),
+      'end',
+    ),
+
+    elseif_branch: $ => seq(
+      'else*',
+      repeat($._word),
+      '*if',
+      repeat($._word),
+    ),
+
+    else_branch: $ => seq(
+      'else',
+      repeat($._word),
+    ),
+
+    // `name. body end` — applies the named function over the body as if
+    // the body were a quotation.
+    prefix_quote_block: $ => seq(
+      $.prefix_quote,
+      repeat($._word),
+      'end',
+    ),
+
     line_comment: $ => token(seq('#', /[^\n]*/)),
 
     boolean: $ => choice('true', 'false'),
 
+    // Keywords that do not start a structural block (`def`, `match`, `if`,
+    // `else`, `else*`, `*if`, `end` are consumed by definition/match_block/
+    // if_block instead).
     keyword: $ => choice(
-      'def', 'end',
-      'if', 'iff', 'else', 'else*', '*if',
-      'loop', 'match', 'break', 'continue',
+      'iff',
+      'loop', 'break', 'continue',
       'soe', 'not', 'and', 'or',
       'read', 'str',
       'as', 'type', 'try', 'fail', 'pure',
