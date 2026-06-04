@@ -17,7 +17,46 @@
   {
     "type": "definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "metadata": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "dict",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "builtin",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "type_keyword",
+            "named": true
+          }
+        ]
+      },
+      "signature": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "quotation",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,
@@ -47,10 +86,6 @@
           "named": true
         },
         {
-          "type": "end_indexer",
-          "named": true
-        },
-        {
           "type": "env_check",
           "named": true
         },
@@ -75,6 +110,10 @@
           "named": true
         },
         {
+          "type": "getter",
+          "named": true
+        },
+        {
           "type": "grid",
           "named": true
         },
@@ -87,7 +126,7 @@
           "named": true
         },
         {
-          "type": "indexer",
+          "type": "indexer_chain",
           "named": true
         },
         {
@@ -100,10 +139,6 @@
         },
         {
           "type": "list",
-          "named": true
-        },
-        {
-          "type": "match_arm_dup",
           "named": true
         },
         {
@@ -139,14 +174,6 @@
           "named": true
         },
         {
-          "type": "slice_indexer",
-          "named": true
-        },
-        {
-          "type": "start_indexer",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -159,7 +186,7 @@
           "named": true
         },
         {
-          "type": "var_store",
+          "type": "var_store_list",
           "named": true
         }
       ]
@@ -174,146 +201,192 @@
       "required": false,
       "types": [
         {
-          "type": "boolean",
-          "named": true
-        },
-        {
-          "type": "builtin",
-          "named": true
-        },
-        {
-          "type": "comparison_operator",
-          "named": true
-        },
-        {
-          "type": "datetime",
-          "named": true
-        },
-        {
-          "type": "definition",
-          "named": true
-        },
-        {
-          "type": "dict",
-          "named": true
-        },
-        {
-          "type": "end_indexer",
-          "named": true
-        },
-        {
-          "type": "env_check",
-          "named": true
-        },
-        {
-          "type": "env_retrieve",
-          "named": true
-        },
-        {
-          "type": "env_store",
-          "named": true
-        },
-        {
-          "type": "execute_operator",
-          "named": true
-        },
-        {
-          "type": "float",
-          "named": true
-        },
-        {
-          "type": "format_string",
-          "named": true
-        },
-        {
-          "type": "grid",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "indexer",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "keyword",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "match_arm_dup",
-          "named": true
-        },
-        {
-          "type": "match_block",
-          "named": true
-        },
-        {
-          "type": "path",
-          "named": true
-        },
-        {
-          "type": "positional",
-          "named": true
-        },
-        {
-          "type": "prefix_quote_block",
-          "named": true
-        },
-        {
-          "type": "punctuation",
-          "named": true
-        },
-        {
-          "type": "quotation",
-          "named": true
-        },
-        {
-          "type": "redirect_operator",
-          "named": true
-        },
-        {
-          "type": "single_quoted_string",
-          "named": true
-        },
-        {
-          "type": "slice_indexer",
-          "named": true
-        },
-        {
-          "type": "start_indexer",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "type_keyword",
-          "named": true
-        },
-        {
-          "type": "var_retrieve",
-          "named": true
-        },
-        {
-          "type": "var_store",
+          "type": "dict_entry",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "dict_entry",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "*",
+            "named": false
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "builtin",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "keyword",
+            "named": true
+          },
+          {
+            "type": "single_quoted_string",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "type_keyword",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "builtin",
+            "named": true
+          },
+          {
+            "type": "comparison_operator",
+            "named": true
+          },
+          {
+            "type": "datetime",
+            "named": true
+          },
+          {
+            "type": "definition",
+            "named": true
+          },
+          {
+            "type": "dict",
+            "named": true
+          },
+          {
+            "type": "env_check",
+            "named": true
+          },
+          {
+            "type": "env_retrieve",
+            "named": true
+          },
+          {
+            "type": "env_store",
+            "named": true
+          },
+          {
+            "type": "execute_operator",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "format_string",
+            "named": true
+          },
+          {
+            "type": "getter",
+            "named": true
+          },
+          {
+            "type": "grid",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_block",
+            "named": true
+          },
+          {
+            "type": "indexer_chain",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "keyword",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "match_block",
+            "named": true
+          },
+          {
+            "type": "path",
+            "named": true
+          },
+          {
+            "type": "positional",
+            "named": true
+          },
+          {
+            "type": "prefix_quote_block",
+            "named": true
+          },
+          {
+            "type": "punctuation",
+            "named": true
+          },
+          {
+            "type": "quotation",
+            "named": true
+          },
+          {
+            "type": "redirect_operator",
+            "named": true
+          },
+          {
+            "type": "single_quoted_string",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "type_keyword",
+            "named": true
+          },
+          {
+            "type": "var_retrieve",
+            "named": true
+          },
+          {
+            "type": "var_store_list",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -349,10 +422,6 @@
           "named": true
         },
         {
-          "type": "end_indexer",
-          "named": true
-        },
-        {
           "type": "env_check",
           "named": true
         },
@@ -377,6 +446,10 @@
           "named": true
         },
         {
+          "type": "getter",
+          "named": true
+        },
+        {
           "type": "grid",
           "named": true
         },
@@ -389,7 +462,7 @@
           "named": true
         },
         {
-          "type": "indexer",
+          "type": "indexer_chain",
           "named": true
         },
         {
@@ -402,10 +475,6 @@
         },
         {
           "type": "list",
-          "named": true
-        },
-        {
-          "type": "match_arm_dup",
           "named": true
         },
         {
@@ -441,14 +510,6 @@
           "named": true
         },
         {
-          "type": "slice_indexer",
-          "named": true
-        },
-        {
-          "type": "start_indexer",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -461,7 +522,7 @@
           "named": true
         },
         {
-          "type": "var_store",
+          "type": "var_store_list",
           "named": true
         }
       ]
@@ -500,10 +561,6 @@
           "named": true
         },
         {
-          "type": "end_indexer",
-          "named": true
-        },
-        {
           "type": "env_check",
           "named": true
         },
@@ -528,6 +585,10 @@
           "named": true
         },
         {
+          "type": "getter",
+          "named": true
+        },
+        {
           "type": "grid",
           "named": true
         },
@@ -540,7 +601,7 @@
           "named": true
         },
         {
-          "type": "indexer",
+          "type": "indexer_chain",
           "named": true
         },
         {
@@ -553,10 +614,6 @@
         },
         {
           "type": "list",
-          "named": true
-        },
-        {
-          "type": "match_arm_dup",
           "named": true
         },
         {
@@ -592,14 +649,6 @@
           "named": true
         },
         {
-          "type": "slice_indexer",
-          "named": true
-        },
-        {
-          "type": "start_indexer",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -612,7 +661,7 @@
           "named": true
         },
         {
-          "type": "var_store",
+          "type": "var_store_list",
           "named": true
         }
       ]
@@ -656,10 +705,6 @@
           "named": true
         },
         {
-          "type": "end_indexer",
-          "named": true
-        },
-        {
           "type": "env_check",
           "named": true
         },
@@ -684,6 +729,10 @@
           "named": true
         },
         {
+          "type": "getter",
+          "named": true
+        },
+        {
           "type": "grid",
           "named": true
         },
@@ -696,7 +745,7 @@
           "named": true
         },
         {
-          "type": "indexer",
+          "type": "indexer_chain",
           "named": true
         },
         {
@@ -709,10 +758,6 @@
         },
         {
           "type": "list",
-          "named": true
-        },
-        {
-          "type": "match_arm_dup",
           "named": true
         },
         {
@@ -748,14 +793,6 @@
           "named": true
         },
         {
-          "type": "slice_indexer",
-          "named": true
-        },
-        {
-          "type": "start_indexer",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -768,7 +805,7 @@
           "named": true
         },
         {
-          "type": "var_store",
+          "type": "var_store_list",
           "named": true
         }
       ]
@@ -815,10 +852,6 @@
           "named": true
         },
         {
-          "type": "end_indexer",
-          "named": true
-        },
-        {
           "type": "env_check",
           "named": true
         },
@@ -843,6 +876,10 @@
           "named": true
         },
         {
+          "type": "getter",
+          "named": true
+        },
+        {
           "type": "grid",
           "named": true
         },
@@ -855,7 +892,7 @@
           "named": true
         },
         {
-          "type": "indexer",
+          "type": "indexer_chain",
           "named": true
         },
         {
@@ -868,10 +905,6 @@
         },
         {
           "type": "list",
-          "named": true
-        },
-        {
-          "type": "match_arm_dup",
           "named": true
         },
         {
@@ -907,14 +940,6 @@
           "named": true
         },
         {
-          "type": "slice_indexer",
-          "named": true
-        },
-        {
-          "type": "start_indexer",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -927,7 +952,34 @@
           "named": true
         },
         {
-          "type": "var_store",
+          "type": "var_store_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "indexer_chain",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "end_indexer",
+          "named": true
+        },
+        {
+          "type": "indexer",
+          "named": true
+        },
+        {
+          "type": "slice_indexer",
+          "named": true
+        },
+        {
+          "type": "start_indexer",
           "named": true
         }
       ]
@@ -971,10 +1023,6 @@
           "named": true
         },
         {
-          "type": "end_indexer",
-          "named": true
-        },
-        {
           "type": "env_check",
           "named": true
         },
@@ -999,6 +1047,10 @@
           "named": true
         },
         {
+          "type": "getter",
+          "named": true
+        },
+        {
           "type": "grid",
           "named": true
         },
@@ -1011,7 +1063,7 @@
           "named": true
         },
         {
-          "type": "indexer",
+          "type": "indexer_chain",
           "named": true
         },
         {
@@ -1024,10 +1076,6 @@
         },
         {
           "type": "list",
-          "named": true
-        },
-        {
-          "type": "match_arm_dup",
           "named": true
         },
         {
@@ -1063,14 +1111,6 @@
           "named": true
         },
         {
-          "type": "slice_indexer",
-          "named": true
-        },
-        {
-          "type": "start_indexer",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -1083,10 +1123,298 @@
           "named": true
         },
         {
-          "type": "var_store",
+          "type": "var_store_list",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "match_arm",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "builtin",
+            "named": true
+          },
+          {
+            "type": "comparison_operator",
+            "named": true
+          },
+          {
+            "type": "datetime",
+            "named": true
+          },
+          {
+            "type": "definition",
+            "named": true
+          },
+          {
+            "type": "dict",
+            "named": true
+          },
+          {
+            "type": "env_check",
+            "named": true
+          },
+          {
+            "type": "env_retrieve",
+            "named": true
+          },
+          {
+            "type": "env_store",
+            "named": true
+          },
+          {
+            "type": "execute_operator",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "format_string",
+            "named": true
+          },
+          {
+            "type": "getter",
+            "named": true
+          },
+          {
+            "type": "grid",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_block",
+            "named": true
+          },
+          {
+            "type": "indexer_chain",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "keyword",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "match_block",
+            "named": true
+          },
+          {
+            "type": "path",
+            "named": true
+          },
+          {
+            "type": "positional",
+            "named": true
+          },
+          {
+            "type": "prefix_quote_block",
+            "named": true
+          },
+          {
+            "type": "punctuation",
+            "named": true
+          },
+          {
+            "type": "quotation",
+            "named": true
+          },
+          {
+            "type": "redirect_operator",
+            "named": true
+          },
+          {
+            "type": "single_quoted_string",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "type_keyword",
+            "named": true
+          },
+          {
+            "type": "var_retrieve",
+            "named": true
+          },
+          {
+            "type": "var_store_list",
+            "named": true
+          }
+        ]
+      },
+      "pattern": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "builtin",
+            "named": true
+          },
+          {
+            "type": "comparison_operator",
+            "named": true
+          },
+          {
+            "type": "datetime",
+            "named": true
+          },
+          {
+            "type": "definition",
+            "named": true
+          },
+          {
+            "type": "dict",
+            "named": true
+          },
+          {
+            "type": "env_check",
+            "named": true
+          },
+          {
+            "type": "env_retrieve",
+            "named": true
+          },
+          {
+            "type": "env_store",
+            "named": true
+          },
+          {
+            "type": "execute_operator",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "format_string",
+            "named": true
+          },
+          {
+            "type": "getter",
+            "named": true
+          },
+          {
+            "type": "grid",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_block",
+            "named": true
+          },
+          {
+            "type": "indexer_chain",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "keyword",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "match_block",
+            "named": true
+          },
+          {
+            "type": "path",
+            "named": true
+          },
+          {
+            "type": "positional",
+            "named": true
+          },
+          {
+            "type": "prefix_quote_block",
+            "named": true
+          },
+          {
+            "type": "punctuation",
+            "named": true
+          },
+          {
+            "type": "quotation",
+            "named": true
+          },
+          {
+            "type": "redirect_operator",
+            "named": true
+          },
+          {
+            "type": "single_quoted_string",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "type_keyword",
+            "named": true
+          },
+          {
+            "type": "var_retrieve",
+            "named": true
+          },
+          {
+            "type": "var_store_list",
+            "named": true
+          }
+        ]
+      },
+      "separator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": ":",
+            "named": false
+          },
+          {
+            "type": "match_arm_dup",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1098,143 +1426,7 @@
       "required": false,
       "types": [
         {
-          "type": "boolean",
-          "named": true
-        },
-        {
-          "type": "builtin",
-          "named": true
-        },
-        {
-          "type": "comparison_operator",
-          "named": true
-        },
-        {
-          "type": "datetime",
-          "named": true
-        },
-        {
-          "type": "definition",
-          "named": true
-        },
-        {
-          "type": "dict",
-          "named": true
-        },
-        {
-          "type": "end_indexer",
-          "named": true
-        },
-        {
-          "type": "env_check",
-          "named": true
-        },
-        {
-          "type": "env_retrieve",
-          "named": true
-        },
-        {
-          "type": "env_store",
-          "named": true
-        },
-        {
-          "type": "execute_operator",
-          "named": true
-        },
-        {
-          "type": "float",
-          "named": true
-        },
-        {
-          "type": "format_string",
-          "named": true
-        },
-        {
-          "type": "grid",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "indexer",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "keyword",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "match_arm_dup",
-          "named": true
-        },
-        {
-          "type": "match_block",
-          "named": true
-        },
-        {
-          "type": "path",
-          "named": true
-        },
-        {
-          "type": "positional",
-          "named": true
-        },
-        {
-          "type": "prefix_quote_block",
-          "named": true
-        },
-        {
-          "type": "punctuation",
-          "named": true
-        },
-        {
-          "type": "quotation",
-          "named": true
-        },
-        {
-          "type": "redirect_operator",
-          "named": true
-        },
-        {
-          "type": "single_quoted_string",
-          "named": true
-        },
-        {
-          "type": "slice_indexer",
-          "named": true
-        },
-        {
-          "type": "start_indexer",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "type_keyword",
-          "named": true
-        },
-        {
-          "type": "var_retrieve",
-          "named": true
-        },
-        {
-          "type": "var_store",
+          "type": "match_arm",
           "named": true
         }
       ]
@@ -1273,10 +1465,6 @@
           "named": true
         },
         {
-          "type": "end_indexer",
-          "named": true
-        },
-        {
           "type": "env_check",
           "named": true
         },
@@ -1301,6 +1489,10 @@
           "named": true
         },
         {
+          "type": "getter",
+          "named": true
+        },
+        {
           "type": "grid",
           "named": true
         },
@@ -1313,7 +1505,7 @@
           "named": true
         },
         {
-          "type": "indexer",
+          "type": "indexer_chain",
           "named": true
         },
         {
@@ -1326,10 +1518,6 @@
         },
         {
           "type": "list",
-          "named": true
-        },
-        {
-          "type": "match_arm_dup",
           "named": true
         },
         {
@@ -1369,14 +1557,6 @@
           "named": true
         },
         {
-          "type": "slice_indexer",
-          "named": true
-        },
-        {
-          "type": "start_indexer",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -1389,7 +1569,7 @@
           "named": true
         },
         {
-          "type": "var_store",
+          "type": "var_store_list",
           "named": true
         }
       ]
@@ -1433,10 +1613,6 @@
           "named": true
         },
         {
-          "type": "end_indexer",
-          "named": true
-        },
-        {
           "type": "env_check",
           "named": true
         },
@@ -1461,6 +1637,10 @@
           "named": true
         },
         {
+          "type": "getter",
+          "named": true
+        },
+        {
           "type": "grid",
           "named": true
         },
@@ -1473,7 +1653,7 @@
           "named": true
         },
         {
-          "type": "indexer",
+          "type": "indexer_chain",
           "named": true
         },
         {
@@ -1486,10 +1666,6 @@
         },
         {
           "type": "list",
-          "named": true
-        },
-        {
-          "type": "match_arm_dup",
           "named": true
         },
         {
@@ -1525,14 +1701,6 @@
           "named": true
         },
         {
-          "type": "slice_indexer",
-          "named": true
-        },
-        {
-          "type": "start_indexer",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -1545,7 +1713,7 @@
           "named": true
         },
         {
-          "type": "var_store",
+          "type": "var_store_list",
           "named": true
         }
       ]
@@ -1590,10 +1758,6 @@
           "named": true
         },
         {
-          "type": "end_indexer",
-          "named": true
-        },
-        {
           "type": "env_check",
           "named": true
         },
@@ -1618,6 +1782,10 @@
           "named": true
         },
         {
+          "type": "getter",
+          "named": true
+        },
+        {
           "type": "grid",
           "named": true
         },
@@ -1630,7 +1798,7 @@
           "named": true
         },
         {
-          "type": "indexer",
+          "type": "indexer_chain",
           "named": true
         },
         {
@@ -1643,10 +1811,6 @@
         },
         {
           "type": "list",
-          "named": true
-        },
-        {
-          "type": "match_arm_dup",
           "named": true
         },
         {
@@ -1682,14 +1846,6 @@
           "named": true
         },
         {
-          "type": "slice_indexer",
-          "named": true
-        },
-        {
-          "type": "start_indexer",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -1702,7 +1858,7 @@
           "named": true
         },
         {
-          "type": "var_store",
+          "type": "var_store_list",
           "named": true
         }
       ]
@@ -1712,6 +1868,21 @@
     "type": "type_keyword",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "var_store_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "var_store",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "!",
@@ -2123,11 +2294,11 @@
   },
   {
     "type": "float",
-    "named": true
+    "named": false
   },
   {
     "type": "float",
-    "named": false
+    "named": true
   },
   {
     "type": "floatCmp",
@@ -2172,6 +2343,10 @@
   {
     "type": "getDef",
     "named": false
+  },
+  {
+    "type": "getter",
+    "named": true
   },
   {
     "type": "glob",

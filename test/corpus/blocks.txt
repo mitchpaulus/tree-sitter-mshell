@@ -1,0 +1,151 @@
+================
+if / else* / else chain
+================
+
+true if
+  "a" wl
+else* false *if
+  "b" wl
+else
+  "c" wl
+end
+
+---
+
+(source_file
+  (boolean)
+  (if_block
+    (string)
+    (builtin)
+    (elseif_branch
+      (boolean)
+      (string)
+      (builtin))
+    (else_branch
+      (string)
+      (builtin))))
+
+================
+match block with : and :> arms
+================
+
+10 match
+  int :> @x str wl,
+  _ : str wl,
+end
+
+---
+
+(source_file
+  (integer)
+  (match_block
+    (match_arm
+      pattern: (type_keyword)
+      separator: (match_arm_dup)
+      body: (var_retrieve)
+      body: (keyword)
+      body: (builtin))
+    (match_arm
+      pattern: (identifier)
+      body: (keyword)
+      body: (builtin))))
+
+================
+if nested inside a match arm body
+================
+
+@seen match
+  dict :
+    @seen "x" in not if
+      "found" wl
+    end
+  ,
+  _ : ,
+end
+
+---
+
+(source_file
+  (var_retrieve)
+  (match_block
+    (match_arm
+      pattern: (identifier)
+      body: (var_retrieve)
+      body: (string)
+      body: (builtin)
+      body: (keyword)
+      body: (if_block
+        (string)
+        (builtin)))
+    (match_arm
+      pattern: (identifier))))
+
+================
+definition with metadata dict and signature
+================
+
+def square { 'doc': "sq" } (int -- int) dup * end
+
+---
+
+(source_file
+  (definition
+    name: (identifier)
+    metadata: (dict
+      (dict_entry
+        key: (single_quoted_string)
+        value: (string)))
+    signature: (quotation
+      (type_keyword)
+      (identifier)
+      (type_keyword))
+    (builtin)
+    (redirect_operator)))
+
+================
+definition whose name collides with a builtin
+================
+
+def map ([a] (a -- b) -- [b]) dup end
+
+---
+
+(source_file
+  (definition
+    name: (builtin)
+    signature: (quotation
+      (list
+        (identifier))
+      (quotation
+        (identifier)
+        (identifier)
+        (identifier))
+      (identifier)
+      (list
+        (identifier)))
+    (builtin)))
+
+================
+nested prefix-quote blocks
+================
+
+[[1 2 3] [4 5 6]] map. filter. 5 > end end
+
+---
+
+(source_file
+  (list
+    (list
+      (integer)
+      (integer)
+      (integer))
+    (list
+      (integer)
+      (integer)
+      (integer)))
+  (prefix_quote_block
+    (prefix_quote)
+    (prefix_quote_block
+      (prefix_quote)
+      (integer)
+      (redirect_operator))))

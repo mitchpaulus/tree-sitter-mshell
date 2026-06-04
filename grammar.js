@@ -1,9 +1,19 @@
 /**
  * Tree-sitter grammar for mshell, a concatenative shell language.
  *
- * Token shapes track mshell/Lexer.go. Source structure is intentionally
- * flat: a file is a stream of words, where brackets/parens/braces/grids
- * group nested words.
+ * Token shapes track mshell/Lexer.go; structural rules track Parser.go.
+ * A file is a stream of words, but the language is NOT flat — words group
+ * into real tree structures that this grammar models explicitly:
+ *
+ *   - bracket groups: list [], quotation (), dict {}, grid [| |]
+ *   - keyword blocks closed by `end`: definition, if/else, match, prefix-quote
+ *   - branch sub-structure: if's elseif/else branches, match's arms, dict's
+ *     key/value entries, grid's rows/cells
+ *   - comma-binding chains: indexer chains (`:2:, -1:, 3:5`) and varstore
+ *     lists (`a!, b!, c!`) absorb their own commas, mirroring ParseIndexer /
+ *     ParseVarstoreList. Every *other* comma is a structural separator, and a
+ *     bare `:` (not `:n`, `:n:`, `:>`, or `:name`) is only ever a dict/match
+ *     separator — so neither `,` nor a bare `:` is a free-standing word.
  *
  * The set of characters that cannot appear inside a literal token follows
  * notAllowedLiteralChars in the lexer:
@@ -54,14 +64,17 @@ module.exports = grammar({
       $.positional,
 
       $.var_retrieve,
-      $.var_store,
+      // Variable stores bind any following commas as a destructuring list
+      // (`a!, b!, c!`), mirroring ParseVarstoreList; a lone `x!` is a list of
+      // one. This keeps structural commas out of the generic word stream.
+      $.var_store_list,
 
-      $.slice_indexer,
-      $.indexer,
-      $.end_indexer,
-      $.start_indexer,
+      // Indexers likewise absorb a comma-separated run (`:2:, -1:, 3:5`) as a
+      // single chain, mirroring ParseIndexer.
+      $.indexer_chain,
 
-      $.match_arm_dup,
+      // `:name` field getter (contiguous colon + name, no space).
+      $.getter,
 
       $.keyword,
       $.type_keyword,
@@ -77,25 +90,94 @@ module.exports = grammar({
 
     list:      $ => seq('[',  repeat($._word), ']'),
     quotation: $ => seq('(',  repeat($._word), ')'),
-    dict:      $ => seq('{',  repeat($._word), '}'),
-    grid:      $ => seq('[|', repeat($._word), '|]'),
 
-    // `def name [metadata-dict] [signature-quotation] body... end`.
-    // Header parts are optional in the grammar so partial code still
-    // parses cleanly; the dict/quotation just fall under `_word` if
-    // present.
+    // `{ key: value..., ... }`. Entries are comma-separated with an optional
+    // trailing comma (ParseDict / parseDictKeyValue); see dict_entry for the
+    // keyed and keyless forms.
+    dict: $ => seq(
+      '{',
+      optional(seq(
+        $.dict_entry,
+        repeat(seq(',', $.dict_entry)),
+        optional(','),
+      )),
+      '}',
+    ),
+
+    // An entry is `key: value...` or, inside type signatures, a keyless
+    // homogeneous type (`{ int }`) or a wildcard `*: T`. The value is a run
+    // of words (so `{ "k": 1 2 + }` and nested dicts both work).
+    dict_entry: $ => seq(
+      optional(seq(field('key', $._dict_key), ':')),
+      field('value', repeat1($._word)),
+    ),
+
+    // mshell's lexer reports bare words (including builtins/keywords) as
+    // LITERAL, and parseDictKeyValue accepts any literal as a key — so any
+    // word-like token can be a key, not just identifiers.
+    _dict_key: $ => choice(
+      $.string,
+      $.single_quoted_string,
+      $.integer,
+      $.identifier,
+      $.builtin,
+      $.keyword,
+      $.type_keyword,
+      $.boolean,
+      '*',
+    ),
+
+    // `[| meta? ; col, col ; cell, cell ; ... |]`. Rows are `;`-separated
+    // (`;` lexes as execute_operator and stays a word), cells within a row
+    // are `,`-separated (ParseGrid). The comma is structural here; the cell
+    // words and the `;` row separators stay in the body stream. Deeper
+    // row/cell nesting is intentionally avoided because a bare `;` is
+    // indistinguishable from an execute_operator at the grammar level.
+    grid: $ => seq(
+      '[|',
+      repeat(choice($._word, ',')),
+      '|]',
+    ),
+
+    // `def name [metadata-dict] (signature) body... end`. The name and the
+    // signature quotation are required (parseDefSignature always expects a
+    // `(…)`); the metadata dict is optional. Requiring them also removes the
+    // ambiguity between a header part and the first body word. The name token
+    // may itself look like a builtin (std.msh defines `map`, `filter`, `zip`,
+    // … which the highlighter would otherwise flag).
     definition: $ => seq(
       'def',
+      field('name', $._definition_name),
+      optional(field('metadata', $.dict)),
+      field('signature', $.quotation),
       repeat($._word),
       'end',
     ),
 
-    // `subject match arm,... end`. Arms aren't separately modeled — the
-    // body is just a stream of words.
+    _definition_name: $ => choice(
+      $.identifier,
+      $.builtin,
+      $.type_keyword,
+    ),
+
+    // `subject match arm, arm, ... end`. Each arm is `pattern <sep> body`,
+    // where the separator is `:` (consume the subject) or `:>` (keep it on
+    // the stack — match-arm-dup). Arms are comma-separated with an optional
+    // trailing comma before `end` (ParseMatchBlock / ParseMatchArm).
     match_block: $ => seq(
       'match',
-      repeat($._word),
+      optional(seq(
+        $.match_arm,
+        repeat(seq(',', $.match_arm)),
+        optional(','),
+      )),
       'end',
+    ),
+
+    match_arm: $ => seq(
+      field('pattern', repeat1($._word)),
+      field('separator', choice(':', $.match_arm_dup)),
+      field('body', repeat($._word)),
     ),
 
     // `condition if body [else* cond *if body]... [else body] end`.
@@ -241,11 +323,48 @@ module.exports = grammar({
       new RegExp(`[A-Za-z_][^${NOT_LITERAL}]*!`)
     )),
 
-    // Indexers — order matters; longer/more-specific forms first.
-    slice_indexer: $ => token(prec(4, /\d+:-?\d+/)),
+    // A varstore destructuring list: `a!, b!, c!` (trailing comma allowed).
+    // A lone `x!` is a list of one. Greedy comma binding matches
+    // ParseVarstoreList, so the commas here are never structural separators.
+    var_store_list: $ => prec.right(seq(
+      $.var_store,
+      repeat(seq(',', $.var_store)),
+      optional(','),
+    )),
+
+    // Indexers — order matters; longer/more-specific forms first. The start
+    // of a slice/start indexer may be negative (`-3:`, `-4:-2`).
+    slice_indexer: $ => token(prec(4, /-?\d+:-?\d+/)),
     indexer:       $ => token(prec(4, /:-?\d+:/)),
     end_indexer:   $ => token(prec(3, /:-?\d+/)),
-    start_indexer: $ => token(prec(3, /\d+:/)),
+    start_indexer: $ => token(prec(3, /-?\d+:/)),
+
+    // A comma-separated run of indexers applied as one slice operation
+    // (`:2:, -1:, 3:5, :2`); a lone `:5` is a chain of one (ParseIndexer).
+    indexer_chain: $ => prec.right(seq(
+      $._indexer,
+      repeat(seq(',', $._indexer)),
+      optional(','),
+    )),
+
+    _indexer: $ => choice(
+      $.slice_indexer,
+      $.indexer,
+      $.end_indexer,
+      $.start_indexer,
+    ),
+
+    // `:name` field getter — colon immediately followed by a name or a
+    // quoted string (no space, which is what distinguishes it from a
+    // dict/match `:` separator). The name may collide with builtins/keywords
+    // (`:index`, `:name`), and a quoted form allows keys with arbitrary
+    // characters (`:'children'`, `:"tag"`), so the whole thing is a single
+    // token rather than `:` + word (ParseGetter).
+    getter: $ => token(prec(2, choice(
+      /:[A-Za-z_][A-Za-z0-9_]*/,
+      /:'[^']*'/,
+      /:"([^"\\]|\\.)*"/,
+    ))),
 
     match_arm_dup: $ => ':>',
 
@@ -263,7 +382,10 @@ module.exports = grammar({
 
     comparison_operator: $ => choice('!=', '<=', '>='),
 
-    punctuation: $ => choice('&', '|', ',', ':'),
+    // `,` and `:` are not free-standing words: `,` is consumed by
+    // indexer/varstore chains or acts as a dict/grid/match separator, and a
+    // bare `:` is only ever a dict/match separator.
+    punctuation: $ => choice('&', '|'),
 
     // Catch-all literal/identifier. Excludes all not-allowed-literal chars
     // and the start-of-token sentinels (digits handled by the number rules;

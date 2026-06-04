@@ -35,6 +35,9 @@
 ; Prefix-quote references like `filter.`
 (prefix_quote) @function
 
+; Field getters like `:name`, `:'children'`
+(getter) @property
+
 ; Indexers
 (indexer)        @operator
 (start_indexer)  @operator
@@ -49,6 +52,10 @@
 
 ; General punctuation
 (punctuation) @punctuation.delimiter
+
+; Structural separators: dict/grid/match commas and dict/match `:`
+"," @punctuation.delimiter
+":" @punctuation.delimiter
 
 ; Brackets
 "["  @punctuation.bracket

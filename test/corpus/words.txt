@@ -1,0 +1,131 @@
+================
+dict: value entries, nesting, multi-word values
+================
+
+{ "a": 1, "b": { "c": 2 }, 'k': 1 2 + }
+
+---
+
+(source_file
+  (dict
+    (dict_entry
+      key: (string)
+      value: (integer))
+    (dict_entry
+      key: (string)
+      value: (dict
+        (dict_entry
+          key: (string)
+          value: (integer))))
+    (dict_entry
+      key: (single_quoted_string)
+      value: (integer)
+      value: (integer)
+      value: (identifier))))
+
+================
+dict: homogeneous and wildcard type forms
+================
+
+{ int } { *: int } { "a": int, *: str }
+
+---
+
+(source_file
+  (dict
+    (dict_entry
+      value: (type_keyword)))
+  (dict
+    (dict_entry
+      value: (type_keyword)))
+  (dict
+    (dict_entry
+      key: (string)
+      value: (type_keyword))
+    (dict_entry
+      value: (keyword))))
+
+================
+indexer chain absorbs its commas
+================
+
+@xs :2:, -1:, 3:5 wl
+
+---
+
+(source_file
+  (var_retrieve)
+  (indexer_chain
+    (indexer)
+    (start_indexer)
+    (slice_indexer))
+  (builtin))
+
+================
+negative indexers
+================
+
+"12345" -3: wl "12345" -4:-2 wl
+
+---
+
+(source_file
+  (string)
+  (indexer_chain
+    (start_indexer))
+  (builtin)
+  (string)
+  (indexer_chain
+    (slice_indexer))
+  (builtin))
+
+================
+varstore destructuring list
+================
+
+a!, b!, c!
+
+---
+
+(source_file
+  (var_store_list
+    (var_store)
+    (var_store)
+    (var_store)))
+
+================
+field getters: name and quoted
+================
+
+@row :name? wl @head :'children'? wl
+
+---
+
+(source_file
+  (var_retrieve)
+  (getter)
+  (execute_operator)
+  (builtin)
+  (var_retrieve)
+  (getter)
+  (execute_operator)
+  (builtin))
+
+================
+grid rows and cells
+================
+
+[| name, age; "Alice", 30; "Bob", 25 |]
+
+---
+
+(source_file
+  (grid
+    (identifier)
+    (identifier)
+    (execute_operator)
+    (string)
+    (integer)
+    (execute_operator)
+    (string)
+    (integer)))

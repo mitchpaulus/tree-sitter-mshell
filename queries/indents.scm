@@ -22,6 +22,9 @@
   (else_branch)
 ] @indent @indent.begin
 
+; Match arms indent their bodies under the arm.
+(match_arm) @indent @indent.begin
+
 ; Branch points dedent the marker line then re-indent contents.
 [
   "else"
